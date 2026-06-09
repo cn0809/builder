@@ -149,7 +149,7 @@ spx-gui/
 ├── index.html                       # 主站 HTML 入口
 ├── account.html                     # Account Web 独立 HTML 入口
 ├── vite.config.ts                   # 主站构建配置
-├── vite.config.account-web.ts       # Account Web 构建配置
+├── vite.config.account.ts           # Account Web 构建配置
 └── src/
     ├── apps/
     │   ├── account/                 # Account Web 入口
@@ -216,7 +216,7 @@ spx-gui/
   - 用户名密码登录表单
 - `spx-gui/src/components/sign-in/LoginForm.vue`
   - 登录页状态机与 API 调用编排
-- `spx-gui/vite.config.account-web.ts`
+- `spx-gui/vite.config.account.ts`
   - `Account Web` 独立构建配置、同源 `/api` 代理和 Vercel rewrite
 
 #### 已改造
@@ -329,7 +329,7 @@ sequenceDiagram
   - 增加主站在新账号系统里的应用标识 `VITE_ACCOUNT_OAUTH_CLIENT_ID`
   - 主站在 `PAR` 之后直接跳转 `GET /account/oauth/authorize`，不自行拼接 `Account Web` 地址
   - `Account Web` 自身走同源 `/api/*` facade，不额外暴露独立的 Account API base URL
-  - `Account Web` 本地环境联调暂时通过 `VITE_ACCOUNT_WEB_TEST_ORIGIN` 复用测试环境地址，用于代理请求的 `Origin` header 和 Vite `allowedHosts` 等绕过配置
+  - `Account Web` 本地环境联调可通过 `VITE_ACCOUNT_WEB_CDP_CALLBACK_ORIGIN` 启用 Chrome DevTools Protocol callback redirect，免去本地 hosts 与 HTTPS 证书配置
 
 #### 小范围联动
 
